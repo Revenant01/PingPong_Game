@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Sun May  7 14:04:47 2023
+# Process ID: 21496
+# Current directory: D:/Semster6/ELCT605/PingPongGame/PingPongGame.runs/synth_1
+# Command line: vivado.exe -log Game.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Game.tcl
+# Log file: D:/Semster6/ELCT605/PingPongGame/PingPongGame.runs/synth_1/Game.vds
+# Journal file: D:/Semster6/ELCT605/PingPongGame/PingPongGame.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source Game.tcl -notrace
