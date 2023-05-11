@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Sun May  7 14:06:02 2023
+| Date         : Thu May 11 15:24:59 2023
 | Host         : LAPTOP-E2Q2CP8R running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Game_control_sets_placed.rpt
 | Design       : Game
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    10 |
-|    Minimum number of control sets                        |    10 |
+| Total control sets                                       |    11 |
+|    Minimum number of control sets                        |    11 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    37 |
+| Unused register locations in slices containing registers |    28 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    10 |
+| Total control sets |    11 |
 | >= 0 to < 4        |     3 |
-| >= 4 to < 6        |     3 |
+| >= 4 to < 6        |     1 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     0 |
+| >= 8 to < 10       |     1 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     4 |
+| >= 16              |     6 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,31 +58,32 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              37 |           17 |
+| No           | No                    | No                     |              38 |           21 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              34 |           10 |
-| Yes          | No                    | No                     |              84 |           26 |
+| Yes          | No                    | No                     |              88 |           30 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              40 |           10 |
+| Yes          | Yes                   | No                     |             100 |           26 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+---------------------+---------------+-----------------------+------------------+----------------+--------------+
-|     Clock Signal    | Enable Signal |    Set/Reset Signal   | Slice Load Count | Bel Load Count | Bels / Slice |
-+---------------------+---------------+-----------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG      |               |                       |                1 |              1 |         1.00 |
-|  clk25_reg_n_0_BUFG |               | Hsync_i_1_n_0         |                1 |              1 |         1.00 |
-|  clk25_reg_n_0_BUFG |               | Vsync0                |                1 |              1 |         1.00 |
-|  clk25_reg_n_0_BUFG | R[3]_i_2_n_0  | R[3]_i_1_n_0          |                1 |              4 |         4.00 |
-|  clk25_reg_n_0_BUFG | B[3]_i_1_n_0  |                       |                1 |              4 |         4.00 |
-|  clk25_reg_n_0_BUFG | G[3]_i_2_n_0  | G[3]_i_1_n_0          |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG      |               | clear                 |                8 |             32 |         4.00 |
-|  clk25_reg_n_0_BUFG | G[3]_i_2_n_0  | horizontal[0]_i_1_n_0 |                8 |             32 |         4.00 |
-|  clk25_reg_n_0_BUFG |               |                       |               16 |             36 |         2.25 |
-|  clk25_reg_n_0_BUFG | ball_top      |                       |               25 |             80 |         3.20 |
-+---------------------+---------------+-----------------------+------------------+----------------+--------------+
++---------------------+----------------------+--------------------------+------------------+----------------+--------------+
+|     Clock Signal    |     Enable Signal    |     Set/Reset Signal     | Slice Load Count | Bel Load Count | Bels / Slice |
++---------------------+----------------------+--------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG      |                      |                          |                1 |              1 |         1.00 |
+|  clk25_reg_n_0_BUFG |                      | Hsync1_out               |                1 |              1 |         1.00 |
+|  clk25_reg_n_0_BUFG |                      | Vsync0                   |                1 |              1 |         1.00 |
+|  clk25_reg_n_0_BUFG | G[3]_i_2_n_0         | G[3]_i_1_n_0             |                2 |              4 |         2.00 |
+|  clk25_reg_n_0_BUFG | R[3]_i_1_n_0         |                          |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG      |                      | clear                    |                8 |             32 |         4.00 |
+|  clk25_reg_n_0_BUFG | Player1_score        | Player1_score[0]_i_1_n_0 |                8 |             32 |         4.00 |
+|  clk25_reg_n_0_BUFG | Player2_score        | Player2_score[0]_i_1_n_0 |                8 |             32 |         4.00 |
+|  clk25_reg_n_0_BUFG | G[3]_i_2_n_0         | horizontal[0]_i_1_n_0    |                8 |             32 |         4.00 |
+|  clk25_reg_n_0_BUFG |                      |                          |               20 |             37 |         1.85 |
+|  clk25_reg_n_0_BUFG | up_moving_flag23_out |                          |               27 |             80 |         2.96 |
++---------------------+----------------------+--------------------------+------------------+----------------+--------------+
 
 

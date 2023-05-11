@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Sun May  7 14:06:22 2023
+| Date         : Thu May 11 15:25:13 2023
 | Host         : LAPTOP-E2Q2CP8R running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file Game_timing_summary_routed.rpt -pb Game_timing_summary_routed.pb -rpx Game_timing_summary_routed.rpx -warn_on_violation
 | Design       : Game
@@ -39,10 +39,10 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (195)
+1. checking no_clock (260)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (393)
+4. checking unconstrained_internal_endpoints (582)
 5. checking no_input_delay (5)
 6. checking no_output_delay (14)
 7. checking multiple_clock (0)
@@ -52,11 +52,11 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (195)
+1. checking no_clock (260)
 --------------------------
  There are 33 register/latch pins with no clock driven by root clock pin: clk (HIGH)
 
- There are 162 register/latch pins with no clock driven by root clock pin: clk25_reg/Q (HIGH)
+ There are 227 register/latch pins with no clock driven by root clock pin: clk25_reg/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -69,9 +69,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (393)
+4. checking unconstrained_internal_endpoints (582)
 --------------------------------------------------
- There are 393 pins that are not constrained for maximum delay. (HIGH)
+ There are 582 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
