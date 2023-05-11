@@ -38,10 +38,10 @@ ARCHITECTURE Behavioral OF Game IS
     SHARED VARIABLE horizontal, vertical : INTEGER := 0;
 
 ---------------------------------------- Paddles parameters -----------------------------------------------    
-    -- This constant represents the length of the paddle, set to 120
+    -- This constant represents the length of the paddle, set to 80
     CONSTANT paddle_length : INTEGER := 80;
 
-    -- This constant represents the width of the paddle, set to 20
+    -- This constant represents the width of the paddle, set to 5
     CONSTANT paddle_width : INTEGER := 5;
 
     -- This shared variable represents the top position of paddle 1, with a range from 0 to (479 - paddle_length) to ensure it stays within the visible area
@@ -59,7 +59,7 @@ ARCHITECTURE Behavioral OF Game IS
     -- This constant represents the left position of paddle 1 
     CONSTANT left_paddle1 : INTEGER := 6;
 
-    -- This constant represents the left position of paddle 2, set to 620
+    -- This constant represents the left position of paddle 2, set to 629
     CONSTANT left_paddle2 : INTEGER := 629;
 
     -- This constant represents the right position of paddle 1, calculated as left_paddle1 + paddle_width
@@ -72,7 +72,7 @@ ARCHITECTURE Behavioral OF Game IS
     CONSTANT Paddle_speed : INTEGER := 3;
 
 ---------------------------------------------------- Ball Parameters --------------------------------------------------------------------------    
-    -- This constant represents the parameter value for the ball, set to 20
+    -- This constant represents the parameter value for the ball, set to 10
     CONSTANT ball_Par : INTEGER := 10;
 
     -- This shared variable represents the top position of the ball, initially set to 235
@@ -132,6 +132,7 @@ BEGIN
             END IF;
         END IF;
     END PROCESS;
+
     main_process : PROCESS (clk25, reset)
     BEGIN
 
@@ -144,56 +145,56 @@ BEGIN
                 IF (horizontal < 640) THEN -- Check if the current position is within the visible area
                     -- Check if the current position is within the range of paddle 1
                     IF ((horizontal >= left_paddle1) AND (horizontal <= right_paddle1) AND (vertical >= top_paddle1) AND (vertical <= bot_paddle1)) THEN
-                        R <= "0000"; -- Set R (red) to maximum intensity
+                        R <= "0000"; -- Set R (red) to minimum intensity
                         G <= "1111"; -- Set G (green) to maximum intensity
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                         -- Check if the current position is within the range of paddle 2
                     ELSIF ((horizontal >= left_paddle2) AND (horizontal <= right_paddle2) AND (vertical >= top_paddle2) AND (vertical <= bot_paddle2)) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
                         G <= "0000"; -- Set G (green) to maximum intensity
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                         -- Check if the current position is within the range of the ball
                     ELSIF ((horizontal >= ball_left AND horizontal <= ball_right) AND (vertical >= ball_top AND vertical <= (ball_top + ball_Par))) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                     ELSIF (horizontal = 0) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                     ELSIF (horizontal = 639) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                     ELSIF (horizontal >= 319 AND horizontal <= 321) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                     ELSIF ((horizontal >= 315 AND horizontal <= 325) AND (vertical >= 235 AND vertical <= 245)) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
 
                     ELSIF ((horizontal >= 0 AND horizontal <= 639) AND vertical = 0) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                     ELSIF ((horizontal >= 0 AND horizontal <= 639) AND vertical = 478) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                     ELSIF ((horizontal >= 299 AND horizontal <= 341) AND vertical = 35) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
                     ELSIF ((vertical >= 0 AND vertical <= 35) AND horizontal = 299) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)     
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity      
                     ELSIF ((vertical >= 0 AND vertical <= 35) AND horizontal = 341) THEN
                         R <= "1111"; -- Set R (red) to maximum intensity
-                        G <= "1111"; -- Set G (green) to minimum intensity (off)
-                        B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                        G <= "1111"; -- Set G (green) to maximum intensity 
+                        B <= "1111"; -- Set B (blue) to maximum intensity 
 
                     ELSE
                         R <= "0000"; -- Set R (red) to minimum intensity (off)
@@ -202,124 +203,125 @@ BEGIN
                         IF (Player1_score = 0) THEN
                             IF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 5) THEN -- A1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 30) THEN -- D1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 6 AND vertical <= 17) AND horizontal = 303) THEN --F1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 19 AND vertical <= 30) AND horizontal = 303) THEN -- E1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 6 AND vertical <= 17) AND horizontal = 315) THEN -- B1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 19 AND vertical <= 30) AND horizontal = 315) THEN --C1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)             
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)             
                             END IF;
                         ELSIF (Player1_score = 1) THEN
                             IF ((vertical >= 6 AND vertical <= 17) AND horizontal = 315) THEN -- B1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 19 AND vertical <= 30) AND horizontal = 315) THEN --C1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)        
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)        
                             END IF;
                         ELSIF (Player1_score = 2) THEN
                             IF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 5) THEN -- A1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 18) THEN -- G1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 30) THEN -- D1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 19 AND vertical <= 30) AND horizontal = 303) THEN -- E1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 6 AND vertical <= 17) AND horizontal = 315) THEN -- B1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)   
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)   
                             END IF;
                         ELSIF (Player1_score = 3) THEN
                             IF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 5) THEN -- A1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 18) THEN -- G1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 30) THEN -- D1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 6 AND vertical <= 17) AND horizontal = 315) THEN -- B1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity 
+                                B <= "1111"; -- Set B (blue) to maximum intensity      
+                
                             ELSIF ((vertical >= 19 AND vertical <= 30) AND horizontal = 315) THEN --C1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)      
+                                G <= "1111"; -- Set G (green) to maximum intensity 
+                                B <= "1111"; -- Set B (blue) to maximum intensity      
                             END IF;
                         ELSIF (Player1_score = 4) THEN
                             IF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 18) THEN -- G1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 6 AND vertical <= 17) AND horizontal = 303) THEN --F1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 6 AND vertical <= 17) AND horizontal = 315) THEN -- B1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 19 AND vertical <= 30) AND horizontal = 315) THEN --C1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)               
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)               
                             END IF;
                         ELSIF (Player1_score = 5) THEN
                             IF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 5) THEN -- A1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
 
                             ELSIF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 18) THEN -- G1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 30) THEN -- D1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
                             ELSIF ((vertical >= 6 AND vertical <= 17) AND horizontal = 303) THEN --F1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)
 
                             ELSIF ((vertical >= 19 AND vertical <= 30) AND horizontal = 315) THEN --C1
                                 R <= "0000"; -- Set R (red) to maximum intensity
-                                G <= "1111"; -- Set G (green) to minimum intensity (off)
-                                B <= "1111"; -- Set B (blue) to minimum intensity (off)          
+                                G <= "1111"; -- Set G (green) to maximum intensity (off)
+                                B <= "1111"; -- Set B (blue) to maximum intensity (off)          
                             END IF;
                         ELSIF (Player1_score = 6) THEN
                             IF ((horizontal >= 303 AND horizontal <= 315) AND vertical = 5) THEN -- A1
