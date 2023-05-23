@@ -1,4 +1,4 @@
--- ===========================================================================
+-- 
 -- File Name: Game.vhd
 -- Description: This file contains the top-level entity and architecture for your VHDL project.
 -- Author: Khalid Abdelaziz
